@@ -1,0 +1,36 @@
+USE HW2;
+
+select *
+from serves natural join foods 
+join chefs on foods.type = chefs.specialty; #Test query
+
+select AVG(price), restauraunts.name as rname
+from serves natural join restauraunts 
+join foods on serves.foodID = foods.foodID
+group by rname; #Q1
+
+select MAX(price), restauraunts.name as rname
+from serves natural join restauraunts 
+join foods on serves.foodID = foods.foodID
+group by rname; #Q2
+
+select distinct count(foods.type) as foodTypeCount, restauraunts.name as rname
+from serves natural join restauraunts 
+join foods on serves.foodID = foods.foodID
+group by rname; #Q3
+
+select AVG(price), chefs.name 
+from serves natural join foods 
+join chefs on foods.type = chefs.specialty
+group by chefs.name; #Q4
+
+select AVG(price) as avg_p, restauraunts.name
+from serves natural join restauraunts 
+join foods on serves.foodID = foods.foodID
+group by restauraunts.name
+order by avg_p desc
+limit 1; #Q5
+
+
+
+
